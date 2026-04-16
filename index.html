@@ -4,148 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>พรรคเพื่อไทย | Pheu Thai Party</title>
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* สีแดงพรรคเพื่อไทย และสี Tinted Neutrals เพื่อความนุ่มนวล */
             --ptp-red: oklch(55% 0.22 25);
-            --ptp-red-dark: oklch(45% 0.20 25);
             --surface: oklch(99% 0.01 25);
-            --gray-900: oklch(15% 0.01 25);
-            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); /* */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
         }
+        body { font-family: 'Plus Jakarta Sans', 'Kanit', sans-serif; background-color: var(--surface); overflow-x: hidden; }
 
-        body {
-            font-family: 'Plus Jakarta Sans', 'Kanit', sans-serif;
-            background-color: var(--surface);
-            color: var(--gray-900);
-            line-height: 1.6; /* */
+        /* ระบบเมนูแบบในวิดีโอ */
+        #mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.4s var(--ease-out-expo);
         }
+        #mobile-menu.active { transform: translateX(0); }
 
-        .btn-primary {
-            background-color: var(--ptp-red);
-            transition: all 0.3s var(--ease-out-expo);
+        .menu-item {
+            border-bottom: 1px solid oklch(90% 0.01 25);
+            transition: background-color 0.2s;
         }
+        
+        /* สัญลักษณ์ลูกศรหมุนเมื่อเปิดแท็บ */
+        .chevron { transition: transform 0.3s; }
+        .dropdown-active .chevron { transform: rotate(180deg); }
 
-        .btn-primary:hover {
-            filter: brightness(1.1);
-            transform: translateY(-2px); /* */
-        }
-
-        .btn-primary:active {
-            transform: scale(0.95); /* */
-        }
-
-        /* Responsive Grid: ปรับขนาดอัตโนมัติตาม container */
-        .policy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem; /* 24px (4pt scale) */
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * { animation: none !important; transition: none !important; } /* */
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s var(--ease-out-expo);
+            background-color: oklch(97% 0.01 25);
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="text-2xl font-bold tracking-tighter text-[oklch(55%_0.22_25)]">
-                PHEU THAI
-            </div>
-            
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#" class="hover:text-[oklch(55%_0.22_25)] transition-colors">หน้าแรก</a>
-                <a href="#policies" class="hover:text-[oklch(55%_0.22_25)] transition-colors">นโยบาย</a>
-                <a href="#" class="hover:text-[oklch(55%_0.22_25)] transition-colors">บุคลากร</a>
-                <a href="#" class="hover:text-[oklch(55%_0.22_25)] transition-colors">ข่าวสาร</a>
-            </div>
-
-            <button class="btn-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold">
-                สมัครสมาชิก
-            </button>
-        </div>
+    <nav class="sticky top-0 z-50 bg-white border-b border-gray-100 h-16 flex items-center px-6">
+        <button id="menu-toggle" class="p-2 -ml-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+        <div class="ml-4 text-xl font-bold tracking-tighter text-[var(--ptp-red)]">PHEU THAI</div>
     </nav>
 
-    <header class="relative overflow-hidden bg-white pt-16 pb-24 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-                คิดใหญ่ ทำเป็น <br>
-                <span class="text-[oklch(55%_0.22_25)]">เพื่อไทยทุกคน</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-lg text-gray-600 mb-10">
-                มุ่งมั่นสร้างโอกาส ลดความเหลื่อมล้ำ และขับเคลื่อนเศรษฐกิจไทยสู่ยุคดิจิทัลอย่างยั่งยืน
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#policies" class="btn-primary text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-red-200">
-                    ดูนโยบายของเรา
-                </a>
-                <a href="#" class="bg-gray-100 hover:bg-gray-200 px-8 py-4 rounded-xl font-bold transition-colors">
-                    รับชมวิดีโอพรรค
-                </a>
-            </div>
-        </div>
-    </header>
+    <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-[60] hidden opacity-0 transition-opacity duration-300"></div>
 
-    <main id="policies" class="max-w-7xl mx-auto px-6 py-20">
-        <div class="flex items-end justify-between mb-12">
+    <aside id="mobile-menu" class="fixed top-0 left-0 w-[85%] max-w-[320px] h-full bg-[#333] text-white z-[70] overflow-y-auto">
+        <div class="p-6 border-b border-white/10 flex justify-between items-center bg-[#222]">
+            <span class="font-bold">เมนูหลัก</span>
+            <button id="menu-close" class="text-white/60">✕</button>
+        </div>
+
+        <nav class="flex flex-col">
+            <a href="#" class="menu-item p-4 hover:bg-white/5 font-medium">หน้าแรก</a>
+            
             <div>
-                <h2 class="text-3xl font-bold mb-2">นโยบายหลัก</h2>
-                <div class="h-1 w-20 bg-[oklch(55%_0.22_25)]"></div>
+                <button class="dropdown-btn w-full p-4 flex justify-between items-center menu-item hover:bg-white/5">
+                    <span>เกี่ยวกับพรรค</span>
+                    <svg class="chevron w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" class="block p-4 pl-8 text-sm text-gray-300 hover:text-white">ประวัติพรรค</a>
+                    <a href="#" class="block p-4 pl-8 text-sm text-gray-300 hover:text-white">คณะกรรมการบริหาร</a>
+                </div>
             </div>
+
+            <div>
+                <button class="dropdown-btn w-full p-4 flex justify-between items-center menu-item hover:bg-white/5">
+                    <span>การมีส่วนร่วม</span>
+                    <svg class="chevron w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" class="block p-4 pl-8 text-sm text-gray-300 hover:text-white">อาสาสมัคร</a>
+                    <a href="#" class="block p-4 pl-8 text-sm text-gray-300 hover:text-white">ร่วมกิจกรรมพรรค</a>
+                </div>
+            </div>
+
+            <a href="#news" class="menu-item p-4 hover:bg-white/5">ข่าวสารล่าสุด</a>
+            <a href="#" class="menu-item p-4 hover:bg-white/5 text-[var(--ptp-red)] font-bold">บริจาค</a>
+        </nav>
+    </aside>
+
+    <main class="p-6">
+        <div class="rounded-2xl overflow-hidden shadow-lg mb-8">
+            <img src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&q=80&w=800" alt="Hero" class="w-full aspect-video object-cover">
         </div>
-
-        <div class="policy-grid">
-            <article class="group p-8 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
-                <div class="w-12 h-12 bg-red-50 text-[oklch(55%_0.22_25)] rounded-2xl flex items-center justify-center mb-6 font-bold text-xl">01</div>
-                <h3 class="text-xl font-bold mb-3">เศรษฐกิจดิจิทัล</h3>
-                <p class="text-gray-600 mb-6">สร้างรายได้ใหม่ผ่านเทคโนโลยีบล็อกเชน และยกระดับทักษะแรงงานไทยสู่ระดับสากล</p>
-                <a href="#" class="text-sm font-bold text-[oklch(55%_0.22_25)] group-hover:underline">อ่านรายละเอียด →</a>
-            </article>
-
-            <article class="group p-8 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
-                <div class="w-12 h-12 bg-red-50 text-[oklch(55%_0.22_25)] rounded-2xl flex items-center justify-center mb-6 font-bold text-xl">02</div>
-                <h3 class="text-xl font-bold mb-3">สาธารณสุขยุคใหม่</h3>
-                <p class="text-gray-600 mb-6">บัตรประชาชนใบเดียวรักษาได้ทุกที่ ด้วยระบบข้อมูลสุขภาพเชื่อมโยงทั่วประเทศ</p>
-                <a href="#" class="text-sm font-bold text-[oklch(55%_0.22_25)] group-hover:underline">อ่านรายละเอียด →</a>
-            </article>
-
-            <article class="group p-8 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
-                <div class="w-12 h-12 bg-red-50 text-[oklch(55%_0.22_25)] rounded-2xl flex items-center justify-center mb-6 font-bold text-xl">03</div>
-                <h3 class="text-xl font-bold mb-3">เกษตรอัจฉริยะ</h3>
-                <p class="text-gray-600 mb-6">ใช้ตลาดนำ นวัตกรรมเสริม เพิ่มรายได้ให้เกษตรกร 3 เท่าภายใน 4 ปี</p>
-                <a href="#" class="text-sm font-bold text-[oklch(55%_0.22_25)] group-hover:underline">อ่านรายละเอียด →</a>
-            </article>
+        
+        <h2 class="text-2xl font-bold mb-6">สถานการณ์ประชาชน</h2>
+        <div class="space-y-6">
+            <div class="border-b border-gray-100 pb-4">
+                <h3 class="font-bold text-gray-800">ขอเชิญชวนสมาชิกรับหนังสือพิมพ์ได้ตั้งแต่วันนี้</h3>
+                <p class="text-xs text-gray-400 mt-1">5 เมษายน 2569</p>
+            </div>
+            <div class="border-b border-gray-100 pb-4">
+                <h3 class="font-bold text-gray-800">สายน้ำไม่คอยใคร: แก้ปัญหาน้ำอย่างยั่งยืน</h3>
+                <p class="text-xs text-gray-400 mt-1">3 เมษายน 2569</p>
+            </div>
         </div>
     </main>
 
-    <footer class="bg-gray-900 text-white pt-16 pb-8 px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-            <div>
-                <div class="text-2xl font-bold mb-6 text-[oklch(55%_0.22_25)]">PHEU THAI</div>
-                <p class="text-gray-400 text-sm">มุ่งมั่นทำงานเพื่อพี่น้องประชาชน <br>ด้วยประสบการณ์และวิสัยทัศน์ที่ทำได้จริง</p>
-            </div>
-            <div>
-                <h4 class="font-bold mb-6">เมนูรวดเร็ว</h4>
-                <ul class="space-y-4 text-sm text-gray-400">
-                    <li><a href="#" class="hover:text-white transition">ร่วมงานกับเรา</a></li>
-                    <li><a href="#" class="hover:text-white transition">ตรวจสอบสิทธิสมาชิก</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-6">ติดต่อพรรค</h4>
-                <p class="text-sm text-gray-400"> ไม่มี <br> ไม่มี </p>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
-            &copy; 2026 พรรคเพื่อไทย
-        </div>
-    </footer>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('menu-overlay');
+
+        // เปิด-ปิดเมนูหลัก
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('hidden');
+            setTimeout(() => overlay.classList.toggle('opacity-0'), 10);
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuClose.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // ระบบ Dropdown ภายในเมนู (Accordion)
+        document.querySelectorAll('.dropdown-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const parent = btn.parentElement;
+                
+                // สลับสถานะเปิด/ปิด
+                parent.classList.toggle('dropdown-active');
+                
+                if (parent.classList.contains('dropdown-active')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = "0";
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
