@@ -8,7 +8,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        :root {
+        :root/* สีแดงพรรคเพื่อไทย และสี Tinted Neutrals เพื่อความนุ่มนวล */
+            --ptp-red: oklch(55% 0.22 25);
+            --ptp-red-dark: oklch(45% 0.20 25);
+            --surface: oklch(99% 0.01 25);
+            --gray-900: oklch(15% 0.01 25);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); /* */
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Kanit', sans-serif;
+            background-color: var(--surface);
+            color: var(--gray-900);
+            line-height: 1.6; /* */
+        }
+
+        .btn-primary {
+            background-color: var(--ptp-red);
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px); /* */
+        }
+
+        .btn-primary:active {
+            transform: scale(0.95); /* */
+        }
+
+        /* Responsive Grid: ปรับขนาดอัตโนมัติตาม container */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem; /* 24px (4pt scale) */
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; } /* */
+        }
+        {
             --ptp-red: oklch(55% 0.22 25);
             --surface: oklch(99% 0.01 25);
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
