@@ -42,11 +42,11 @@
 
     <aside id="side-menu" class="fixed top-0 left-0 w-[80%] max-w-[320px] h-full bg-[#222] text-white z-[70] shadow-2xl">
         <div class="p-6 border-b border-white/10 flex justify-between items-center bg-[#1a1a1a]">
-            <span class="font-bold tracking-wider">MENU</span>
+            <span class="font-bold tracking-wider">เมนูหลัก</span>
             <button id="close-btn" class="text-white/50 hover:text-white">✕</button>
         </div>
         <nav class="flex flex-col">
-            <a href="index.html" class="p-5 border-b border-white/5 hover:bg-white/5">หน้าแรก</a>
+            <a href="index.html" class="p-5 border-b border-white/5 bg-white/10 text-white font-bold">หน้าแรก</a>
             <div class="dropdown-item">
                 <button class="dropdown-btn w-full p-5 flex justify-between items-center border-b border-white/5 hover:bg-white/5">
                     <span>เกี่ยวกับพรรค</span>
@@ -55,14 +55,20 @@
                 <div class="dropdown-content">
                     <a href="history.html" class="block p-4 pl-10 text-sm text-gray-400 hover:text-white">ประวัติพรรค</a>
                     <a href="executive.html" class="block p-4 pl-10 text-sm text-gray-400 hover:text-white">คณะกรรมการบริหาร</a>
+                    <a href="PartyRegulations.html" class="block p-4 pl-10 text-sm text-gray-400 hover:text-white">ระเบียบข้อบังคับ</a>
                 </div>
             </div>
-            <a href="policies.html" class="p-5 border-b border-white/5 hover:bg-white/5">ผลงานและนโยบาย</a>
+            <div class="dropdown-item">
+                <button class="dropdown-btn w-full p-5 flex justify-between items-center border-b border-white/5 hover:bg-white/5">
+                    <span>ผลงานและนโยบาย</span>
+                    <svg class="chevron h-4 w-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
                 <div class="dropdown-content">
-                    <a href="policy.html" class="block p-4 pl-10 text-sm text-gray-400 hover:text-white">นโยบายหลัก</a>
+                    <a href="policy.html" class="block p-4 pl-10 text-sm text-gray-400 hover:text-white">รายละเอียดนโยบาย</a>
                     <a href="Pastmilestones.html" class="block p-4 pl-10 text-sm text-gray-400 hover:text-white">ความสำเร็จที่ผ่านมา</a>
                 </div>
-            <a href="news.html" class="p-5 border-b border-white/5 bg-white/5 text-white">ข่าวสารล่าสุด</a>
+            </div>
+            <a href="news.html" class="p-5 border-b border-white/5 hover:bg-white/5">ข่าวสารล่าสุด</a>
         </nav>
     </aside>
 
